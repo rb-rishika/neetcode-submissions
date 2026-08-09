@@ -1,0 +1,25 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        
+        #We are trying to use binary search two times. We control the execution using a flag findFirst
+        def binSearch(left, right, findFirst):
+            ans=-1
+            while left<=right: 
+                mid= left+ (right-left)//2
+                if nums[mid]==target:
+                    ans = mid
+                    if findFirst:
+                        right=mid-1
+                    else:
+                        left=mid+1
+                elif target< nums[mid]:
+                    right=mid-1
+                else:
+                    left=mid+1
+            return ans
+
+        first=binSearch(0,len(nums)-1, True)
+        second=binSearch(0,len(nums)-1, False)
+
+        return [first, second]
+        
