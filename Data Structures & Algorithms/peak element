@@ -1,0 +1,19 @@
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        return self.search(nums, 0, len(nums) - 1)
+
+    def search(self, nums: List[int], l: int, r: int) -> int:
+        left=0
+        right = len(nums)-1
+
+        while(left<right):
+            mid = (left + right) // 2
+            if nums[mid]<nums[mid+1]:
+                left=mid+1
+            else:
+                right=mid
+        if len(nums)==0: return -1 
+        else: return right //end of the loop, left= right which would be the highest
+
+
+        
