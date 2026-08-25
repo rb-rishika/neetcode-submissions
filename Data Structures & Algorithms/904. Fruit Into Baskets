@@ -1,0 +1,28 @@
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        hashmap=defaultdict(int)
+        print(hashmap)
+
+        left=0
+        right=0
+        maxFreq=0
+        res=0
+
+        while right<len(fruits):
+            hashmap[fruits[right]]= hashmap.get(fruits[right],0)+1
+            maxFreq= max(maxFreq, hashmap[fruits[right]])
+
+            while len(hashmap)> 2:
+                hashmap[fruits[left]]-=1
+                if hashmap[fruits[left]]==0:
+                    del hashmap[fruits[left]]
+                left+=1
+
+
+            res=max(res,right-left+1 )
+            right+=1
+        return res
+
+
+
+
